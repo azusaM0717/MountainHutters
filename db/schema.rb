@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_01_07_041838) do
+ActiveRecord::Schema.define(version: 2025_01_07_051210) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -24,6 +24,42 @@ ActiveRecord::Schema.define(version: 2025_01_07_041838) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "review_id", null: false
+    t.string "comment", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "review_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "huts", force: :cascade do |t|
+    t.string "name", null: false
+    t.decimal "latitude", precision: 10, scale: 6, null: false
+    t.decimal "longitude", precision: 10, scale: 6, null: false
+    t.string "description", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "hut_id", null: false
+    t.string "title", null: false
+    t.text "body", null: false
+    t.integer "rating", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["hut_id"], name: "index_reviews_on_hut_id"
+    t.index ["rating"], name: "index_reviews_on_rating"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -33,8 +69,13 @@ ActiveRecord::Schema.define(version: 2025_01_07_041838) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_active", default: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "comments", "reviews"
+  add_foreign_key "comments", "users"
+  add_foreign_key "reviews", "huts"
+  add_foreign_key "reviews", "users"
 end
