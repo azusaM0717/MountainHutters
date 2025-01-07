@@ -19,16 +19,19 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root to: "homes#top"
-    get "/about"=>"homes#about"
-    resources :favorites, only: [:create, :destroy, :index]
-    resources :comments, only: [:create, :destroy]
+    get "/about" => "homes#about"
     resources :huts, only: [:index, :show]
-    resources :reviews
+    resources :reviews do
+      resources :comments, only: [:create, :destroy]
+      resources :favorites, only: [:create, :destroy] 
+    end
     resources :users, only: [:show, :edit, :update]
-    get "/mypage"=>"users#show"
-    get "/information/edit"=>"users#edit"
-    patch "/information/edit"=>"users#update"
-    get "users/unsubscribe"=>"users#unsubscribe"
+    get "/mypage" => "users#show"
+    get "/information/edit" => "users#edit"
+    patch "/information/edit" => "users#update"
+    get "users/unsubscribe" => "users#unsubscribe"
     patch "users/withdraw" => "users#withdraw"
+    get "users/favorites" => "users#favorites"
+    get "/search", to: 'searches#index', as: :search
   end
 end
