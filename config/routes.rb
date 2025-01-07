@@ -1,6 +1,31 @@
 Rails.application.routes.draw do
   
 
+  namespace :admin do
+    get 'huts/index'
+    get 'huts/new'
+    get 'huts/create'
+    get 'huts/show'
+    get 'huts/edit'
+    get 'huts/update'
+  end
+  namespace :admin do
+    get 'comments/index'
+    get 'comments/destroy'
+  end
+  namespace :admin do
+    get 'reviews/index'
+    get 'reviews/destroy'
+  end
+  namespace :admin do
+    get 'users/index'
+    get 'users/show'
+    get 'users/edit'
+    get 'users/update'
+  end
+  namespace :admin do
+    get 'homes/top'
+  end
   namespace :public do
     get 'favorites/create'
     get 'favorites/destroy'
