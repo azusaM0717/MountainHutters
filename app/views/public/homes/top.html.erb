@@ -1,12 +1,15 @@
 <div class="container mt-5">
   <div class="row">
-    <div class="col-md-10 text-center">
+    <div class="col-md-12 text-center">
       <h1>Welcome to Mountain Hutters!</h1>
-        <img src="MountainHutters/app/assets/images/top_mountainhut.jpg" alt="Mountain Hut Photo" class="img-fluid my-4">
+        <%= image_tag 'top_mountainhut.jpg', alt: 'Mountain Hut' %>
+        <p>Mountain Huttersは、山小屋を楽しむすべての人々のためのコミュニティです。</p>
+        <p>山小屋での滞在、レビュー、そして登山仲間との出会いを楽しみましょう！</p>
         
         <div class="mt-5">
-          <a href="/users/sign_up" class="btn btn-primary me-2">新規登録はこちら</a><br>
-          <a href="/users/sign_in" class="btn btn-secondary">ログインはこちら</a>
+<%#          <%= link_to 'ゲストログインはこちら', users_guest_sign_in_path, method: :post, class: 'btn btn-primary mt-5' %>
+          <%= link_to '新規登録はこちら', new_user_registration_path, class: 'btn btn-success mt-2' %>
+          <%= link_to 'ログインはこちら', new_user_session_path, class: 'btn btn-success mt-2' %>
         </div>
 
       <h2 class="mt-5">新着レビュー</h2>
