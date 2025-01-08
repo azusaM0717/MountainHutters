@@ -5,4 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one_attached :image
+
+  #ゲストユーザーかどうか判断するメソッド
+  def guest?
+    email == 'guest@example.com'
+  end
 end
