@@ -1,2 +1,13 @@
 class Review < ApplicationRecord
+
+  has_many_attached :images
+  validate :image_count_within_limit
+
+  private
+
+  def image_count_within_limit
+    if images.count > 4
+      errors.add(:images, "は4枚以内にしてください。")
+    end
+  end
 end
