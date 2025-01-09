@@ -1,5 +1,5 @@
 class Review < ApplicationRecord
-
+  belongs_to :hut
   has_many_attached :images
   validate :image_count_within_limit
 

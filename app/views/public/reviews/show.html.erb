@@ -1,2 +1,5 @@
-<h1>Public::Reviews#show</h1>
-<p>Find me in app/views/public/reviews/show.html.erb</p>
+<h1>レビュー詳細</h1>
+
+<% @review.images.each do |image| %>
+  <%= image_tag image, class: 'img-thumbnail' %>
+<% end %>
