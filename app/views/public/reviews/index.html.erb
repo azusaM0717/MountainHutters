@@ -1,2 +1,11 @@
-<h1>Public::Reviews#index</h1>
-<p>Find me in app/views/public/reviews/index.html.erb</p>
+<h1>レビュー一覧</h1>
+
+<%= @reviews.each do |review| %>
+
+  <p>タイトル</p>
+  <span><%= list.title %></span>
+  
+<% end %>
+<% @review.images.each do |image| %>
+  <%= image_tag image, class: 'img-thumbnail' %>
+<% end %>

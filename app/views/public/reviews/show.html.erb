@@ -1,5 +1,19 @@
 <h1>レビュー詳細</h1>
 
-<% @review.images.each do |image| %>
-  <%= image_tag image, class: 'img-thumbnail' %>
+<h2><%= @review.title %></h2>
+
+<p><strong>レビュー内容:</strong></p>
+<p><%= @review.body %></p>
+
+<p><strong>評価:</strong><%= @review.rating %> / 5</p>
+
+<% if @review.images.attached? %>
+  <h2>画像:</h2>
+  <% @review.images.each do |image| %>
+    <%= image_tag image %>
+  <% end %>
 <% end %>
+
+<p><strong>投稿者:</strong> <%= @review.user.name %></p>
+
+<%= link_to 'レビュー一覧へ戻る', reviews_path %>
