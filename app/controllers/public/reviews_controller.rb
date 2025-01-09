@@ -24,12 +24,23 @@ class Public::ReviewsController < ApplicationController
   end
 
   def edit
+    @review = Review.find(params[:id])
+    @huts = Hut.all
   end
 
   def update
+    @review = Review.find(params[:id])
+    if @review.update(review_params)
+      redirect_to review_path(@review), notice:"変更が保存されました"
+    else
+      render :edit
+    end
   end
 
   def destroy
+    review = Review.find(params[:id])
+    review.destroy
+    redirect_to mypage_path, notice: "レビューが削除されました"
   end
 
   private

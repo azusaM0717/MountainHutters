@@ -16,4 +16,9 @@
 
 <p><strong>投稿者:</strong> <%= @review.user.name %></p>
 
-<%= link_to 'レビュー一覧へ戻る', reviews_path %>
+<%= link_to 'レビュー一覧へ戻る', reviews_path, class: "btn btn-primary mr-3" %>
+
+<% if current_user == @review.user %>
+  <%= link_to "レビューを編集", edit_review_path(@review), class: "btn btn-primary" %>
+  <%= link_to "レビューを削除", review_path(@review), method: :delete, data: { confirm: '本当に削除してよろしいですか？' }, class: 'btn btn-danger' %>
+<% end %>
