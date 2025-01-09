@@ -5,7 +5,7 @@ class Public::ReviewsController < ApplicationController
   end
 
   def index
-    @reviews = Review.all
+    @reviews = Review.includes(:user, :hut).all
   end
 
   def show
